@@ -30,5 +30,9 @@ void motorsForward(){
     pinMode(M2F,HIGH);
     pinMode(M3F,HIGH);
     pinMode(M4F,HIGH);
+    pinMode(M1R,LOW);
+    pinMode(M2R,LOW);
+    pinMode(M3R,LOW);
+    pinMode(M4R,LOW);
 
 }
