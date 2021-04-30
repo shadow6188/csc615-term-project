@@ -12,38 +12,54 @@
 **************************************************************/
 #include "drivetrain.h"
 
-uint8_t check_speed(uint8_t speed);
+int check_speed(int speed);
 
 void initialize_motor(){// initialize ic2
     PCA9685_Init(0x40);
     PCA9685_SetPWMFreq(100);
 }
 
-void forward(uint8_t speed){ // move
+void setRightMotors(int speed){
     speed = check_speed(speed);
-    PCA9685_SetLevel(AIN1,1); // power sent out through (AN1)
-    PCA9685_SetLevel(AIN2,0); // set AIN2 to GND
-    PCA9685_SetLevel(BIN1,1); // power sent out through (AN1)
-    PCA9685_SetLevel(BIN2,0); // set AIN2 to GND
-    PCA9685_SetPwmDutyCycle(PWMB, speed);
-    PCA9685_SetPwmDutyCycle(PWMA, speed);
+
+    if (speed > 0){
+        PCA9685_SetLevel(AIN1,1);
+        PCA9685_SetLevel(AIN2,0);
+        PCA9685_SetPwmDutyCycle(PWMA,speed);
+    } else {
+        PCA9685_SetLevel(AIN1, 0);
+        PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMA,-speed);
+    }
 }
-void reverse(uint8_t speed){
-    speed =check_speed(speed);
-    PCA9685_SetLevel(AIN1,1); // set AIN1 to GND
-    PCA9685_SetLevel(AIN2,0); // power sent out through
-    PCA9685_SetLevel(BIN1,1);
-    PCA9685_SetLevel(BIN2,0);
-    PCA9685_SetPwmDutyCycle(PWMB, speed);
-    PCA9685_SetPwmDutyCycle(PWMA, speed);
+void setLeftMotors(int speed){
+    speed = check_speed(speed);
+
+    if (speed > 0){
+        PCA9685_SetLevel(BIN1,1);
+        PCA9685_SetLevel(BIN2,0);
+        PCA9685_SetPwmDutyCycle(PWMA,speed);
+    } else {
+        PCA9685_SetLevel(BIN1, 0);
+        PCA9685_SetLevel(BIN2, 1);
+        PCA9685_SetPwmDutyCycle(PWMA,-speed);
+    }
 }
+
+void setMotors(int speed){
+    setRightMotors(speed);
+    setLeftMotors(speed);
+}
+
 void stop(){
     PCA9685_SetPwmDutyCycle(PWMA, 0);
     PCA9685_SetPwmDutyCycle(PWMB,0);
 }
-uint8_t check_speed(uint8_t speed){
+int check_speed(int speed){
     if (speed > 100)
         return 100;
+    else if (speed < -100)
+        return -100;
     else
         return speed;
 }

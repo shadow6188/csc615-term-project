@@ -24,6 +24,7 @@
 #define MOTOR       0
 
 void initialize_motor();
-void forward(uint8_t speed);
-void reverse(uint8_t speed);
+void setMotors(int speed);
+void setRightMotors(int speed);
+void setLeftMotors(int speed);
 void stop();

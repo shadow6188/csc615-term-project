@@ -51,18 +51,12 @@ int main(void)
     return 0;
 }
 void run_motor(){
-        printf("Motor_Run\r\n");
-        forward(100);
-        delay(2000); // 2 second delay
-        for (int i = 100;i > 15;i -= 5){// slow down 5% at a time until at 15%
-            forward(i);
-            delay(100);
-        }
-        stop();
-        delay(1000);
-        for (int i = 0; i <= 100 ; i += 5) {
-            reverse(i);
-            delay(100);
-        }
-        running = 0;
+    printf("Motor_Run\r\n");
+    setMotors(100);
+    delay(1000); // 2 second delay
+    setRightMotors(100);
+    setLeftMotors(-100);
+    delay(1000);
+    setMotors(-100);
+    delay(1000);
 }
