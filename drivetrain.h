@@ -1,29 +1,29 @@
-//
-// Created by gerardo on 4/28/21.
-//
+/**************************************************************
+* Class: CSC-615-01 Spring 2020
+* Name: Gerardo Ochoa
+* Student ID: 918631875
+* Github ID: shadow6188
+* Project: Assignment 3 - Motors
+*
+* File: customDriver.h
+*
+* Description: header for motor driver
+**************************************************************/
 
-#ifndef CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_DRIVETRAIN_H
-#define CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_DRIVETRAIN_H
-#include <wiringPi.h>
+#include "PCA9685.h"
 
+// Right side motors
+#define PWMA        PCA_CHANNEL_0
+#define AIN1        PCA_CHANNEL_1
+#define AIN2        PCA_CHANNEL_2
+// Left side motors
+#define PWMB        PCA_CHANNEL_5
+#define BIN1        PCA_CHANNEL_3
+#define BIN2        PCA_CHANNEL_4
 
-//Motor 1 pins
-#define M1PMW 11
-#define M1F 15
-#define M1R 13
-//Motor 2 pins
-#define M2PMW 22
-#define M2F 16
-#define M2R 18
-//Motor 3 pins
-#define M3PMW 19
-#define M3F 21
-#define M3R 23
-//Motor 4 pins
-#define M4PMW 32
-#define M4F 24
-#define M4R 26
+#define MOTOR       0
 
-void initMotors();
-void motorsForward();
-#endif //CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_DRIVETRAIN_H
+void initialize_motor();
+void forward(uint8_t speed);
+void reverse(uint8_t speed);
+void stop();
