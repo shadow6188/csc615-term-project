@@ -18,8 +18,8 @@
 #define AIN2        PCA_CHANNEL_2
 // Left side motors
 #define PWMB        PCA_CHANNEL_5
-#define BIN1        PCA_CHANNEL_3
-#define BIN2        PCA_CHANNEL_4
+#define BIN1        PCA_CHANNEL_4
+#define BIN2        PCA_CHANNEL_3
 
 #define MOTOR       0
 

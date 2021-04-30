@@ -35,7 +35,6 @@ int main(void)
     //1.System Initialization
     if(DEV_ModuleInit())
         exit(0);
-    pinMode(BUTTON, INPUT);// prepare Gpio 17 for input reading
     
     //2.Motor Initialization
     initialize_motor();
