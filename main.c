@@ -61,10 +61,9 @@ int main(void)
             {
             turnLeft(60);
             } 
-        else if(right)
+        else if  (right)
             {
             turnRight(60);
-
             }   
             else{
                 stop();
