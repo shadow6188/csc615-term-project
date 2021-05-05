@@ -16,9 +16,15 @@
 #include <signal.h>
 #include "DEV_Config.h"
 #include "drivetrain.h"
+#include "line_sensors.h"
 
 volatile int running = 0;
+volatile int left = 0;
+volatile int mid = 0;
+volatile int right = 0;
+
 void run_motor();
+PI_THREAD(line);
 
 void  Handler(int signo)
 {
@@ -38,25 +44,55 @@ int main(void)
     
     //2.Motor Initialization
     initialize_motor();
+    init_line_sensors();
+
+    piThreadCreate (line);
 
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
 
-    run_motor();
 
-    stop();
+    while (1){
+        if (!left && !right) 
+            {
+            setMotors(100);
+            } 
+         else if (left)
+            {
+            turnLeft(60);
+            } 
+        else if(right)
+            {
+            turnRight(60);
+
+            }   
+            else{
+                stop();
+                }
+    }
 
     //3.System Exit
     DEV_ModuleExit();
     return 0;
 }
-void run_motor(){
-    printf("Motor_Run\r\n");
-    setMotors(100);
-    delay(1000); // 2 second delay
-    setRightMotors(100);
-    setLeftMotors(-100);
-    delay(1000);
-    setMotors(-100);
-    delay(1000);
+
+PI_THREAD(line){
+        while (1){
+            if (digitalRead(RSENSOR)) {
+                right = 0;
+                printf("sensor on RIGHT\n");
+            } else 
+            {
+                right = 1;
+            }
+            
+            if (digitalRead(LSENSOR))
+            {
+                left = 0;
+                printf("sensor on LEFT\n");
+            } else {
+                left = 1;
+            }
+            delay(500);
+        }
 }
