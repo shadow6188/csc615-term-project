@@ -57,17 +57,18 @@ int main(void)
             {
             setMotors(50);
             } 
-         else if (left)
+         else if (left && !right)
             {
-            turnRight(50);
+            turnRight(90);
             } 
-        else if  (right)
+        else if (right && !left)
             {
-            turnLeft(50);
-            }   
-            else{
-                stop();
-                }
+            turnLeft(90);
+            }  
+
+        else{
+            stop();
+            }
     }
 
     //3.System Exit
