@@ -55,7 +55,7 @@ int main(void)
     while (1){
         if (!left && !right) 
             {
-            setMotors(70);
+            setMotors(50);
             } 
          else if (left && !right)
             {
