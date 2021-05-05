@@ -59,11 +59,11 @@ int main(void)
             } 
          else if (left)
             {
-            turnLeft(50);
+            turnRight(50);
             } 
         else if  (right)
             {
-            turnRight(50);
+            turnLeft(50);
             }   
             else{
                 stop();
