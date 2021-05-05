@@ -55,15 +55,15 @@ int main(void)
     while (1){
         if (!left && !right) 
             {
-            setMotors(100);
+            setMotors(50);
             } 
          else if (left)
             {
-            turnLeft(60);
+            turnLeft(50);
             } 
         else if  (right)
             {
-            turnRight(60);
+            turnRight(50);
             }   
             else{
                 stop();
