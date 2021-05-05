@@ -51,12 +51,12 @@ void setMotors(int speed){
     setLeftMotors(speed);
 }
 void turnLeft(int speed){
-    setLeftMotors(-speed);
+    setLeftMotors(0);
     setRightMotors(speed);
 }
 void turnRight(int speed){
     setLeftMotors(speed);
-    setRightMotors(-speed);
+    setRightMotors(0);
 }
 void stop(){
     PCA9685_SetPwmDutyCycle(PWMA, 0);
