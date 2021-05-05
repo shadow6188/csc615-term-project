@@ -85,7 +85,6 @@ PI_THREAD(line){
             {
                 right = 1;
             }
-            
             if (digitalRead(LSENSOR))
             {
                 left = 0;
@@ -93,6 +92,5 @@ PI_THREAD(line){
             } else {
                 left = 1;
             }
-            delay(500);
         }
 }
