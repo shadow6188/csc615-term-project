@@ -38,11 +38,11 @@ void setLeftMotors(int speed){
     if (speed > 0){
         PCA9685_SetLevel(BIN1,1);
         PCA9685_SetLevel(BIN2,0);
-        PCA9685_SetPwmDutyCycle(PWMA,speed);
+        PCA9685_SetPwmDutyCycle(PWMB,speed);
     } else {
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-        PCA9685_SetPwmDutyCycle(PWMA,-speed);
+        PCA9685_SetPwmDutyCycle(PWMB,-speed);
     }
 }
 
@@ -50,7 +50,14 @@ void setMotors(int speed){
     setRightMotors(speed);
     setLeftMotors(speed);
 }
-
+void turnLeft(int speed){
+    setLeftMotors(0);
+    setRightMotors(speed);
+}
+void turnRight(int speed){
+    setLeftMotors(speed);
+    setRightMotors(0);
+}
 void stop(){
     PCA9685_SetPwmDutyCycle(PWMA, 0);
     PCA9685_SetPwmDutyCycle(PWMB,0);
