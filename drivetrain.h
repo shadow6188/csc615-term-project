@@ -27,4 +27,8 @@ void initialize_motor();
 void setMotors(int speed);
 void setRightMotors(int speed);
 void setLeftMotors(int speed);
+void softturnLeft(int speed);
+void hardturnLeft(int speed);
+void softturnRight(int speed);
+void hardturnRight(int speed);
 void stop();
