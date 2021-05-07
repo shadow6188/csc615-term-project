@@ -50,6 +50,22 @@ void setMotors(int speed){
     setRightMotors(speed);
     setLeftMotors(speed);
 }
+void softturnLeft(int speed){
+    setLeftMotors(speed - 15);
+    setRightMotors(speed);
+}
+void softturnRight(int speed){
+    setLeftMotors(speed);
+    setRightMotors(speed - 15);
+}
+void hardturnLeft(int speed){
+    setLeftMotors(speed - 30);
+    setRightMotors(speed);
+}
+void hardturnRight(int speed){
+    setLeftMotors(speed);
+    setRightMotors(speed - 30);
+}
 void turnLeft(int speed){
     setLeftMotors(0);
     setRightMotors(speed);
