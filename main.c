@@ -57,12 +57,12 @@ int main(void)
             {
             setMotors(60);
             } 
-         else if (left && !right)
+         else if (!left && right)
             {
             //turnRight(80);
             softturnRight(80);
             } 
-        else if (right && !left)
+        else if (!right && left)
             {
             //turnLeft(80);
             softturnLeft(80);
