@@ -23,12 +23,12 @@ void setRightMotors(int speed){
     speed = check_speed(speed);
 
     if (speed > 0){
-        PCA9685_SetLevel(AIN1,1);
-        PCA9685_SetLevel(AIN2,0);
+        PCA9685_SetLevel(AIN1,0);
+        PCA9685_SetLevel(AIN2,1);
         PCA9685_SetPwmDutyCycle(PWMA,speed);
     } else {
-        PCA9685_SetLevel(AIN1, 0);
-        PCA9685_SetLevel(AIN2, 1);
+        PCA9685_SetLevel(AIN1, 1);
+        PCA9685_SetLevel(AIN2, 0);
         PCA9685_SetPwmDutyCycle(PWMA,-speed);
     }
 }
