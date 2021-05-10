@@ -36,12 +36,12 @@ void setLeftMotors(int speed){
     speed = check_speed(speed);
 
     if (speed > 0){
-        PCA9685_SetLevel(BIN1,1);
-        PCA9685_SetLevel(BIN2,0);
+        PCA9685_SetLevel(BIN1,0);
+        PCA9685_SetLevel(BIN2,1);
         PCA9685_SetPwmDutyCycle(PWMB,speed);
     } else {
-        PCA9685_SetLevel(BIN1, 0);
-        PCA9685_SetLevel(BIN2, 1);
+        PCA9685_SetLevel(BIN1, 1);
+        PCA9685_SetLevel(BIN2, 0);
         PCA9685_SetPwmDutyCycle(PWMB,-speed);
     }
 }
