@@ -59,7 +59,6 @@ int main(void)
         if (left && right) 
             {
             setMotors(60);
-            printf("Distance: %.2f cm\n", distance());
             } 
          else if (!left && right)
             {
