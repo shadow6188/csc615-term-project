@@ -17,6 +17,7 @@
 #include "DEV_Config.h"
 #include "drivetrain.h"
 #include "line_sensors.h"
+#include "echo_sensor.h"
 
 volatile int running = 0;
 volatile int left = 0;
@@ -24,6 +25,7 @@ volatile int mid = 0;
 volatile int right = 0;
 
 void run_motor();
+
 PI_THREAD(line);
 
 void  Handler(int signo)
@@ -45,6 +47,7 @@ int main(void)
     //2.Motor Initialization
     initialize_motor();
     init_line_sensors();
+    
 
     piThreadCreate (line);
 
@@ -53,19 +56,20 @@ int main(void)
 
 
     while (1){
-        if (!left && !right) 
+        if (left && right) 
             {
             setMotors(60);
             } 
-         else if (left && !right)
+         else if (!left && right)
             {
             turnRight(80);
+            //softturnRight(80);
             } 
-        else if (right && !left)
+        else if (!right && left)
             {
             turnLeft(80);
+            //softturnLeft(80);
             }  
-
         else{
             stop();
             }
