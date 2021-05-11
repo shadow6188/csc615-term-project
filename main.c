@@ -98,6 +98,6 @@ PI_THREAD(line){
                 left = 1;
             }
 
-            echo = distance();
+       //     echo = distance();
         }
 }
