@@ -17,12 +17,13 @@
 #include "DEV_Config.h"
 #include "drivetrain.h"
 #include "line_sensors.h"
+#include "echo_sensor.h"
 
 volatile int running = 0;
 volatile int left = 0;
 volatile int mid = 0;
 volatile int right = 0;
-
+volatile double echo = 0;
 void run_motor();
 PI_THREAD(line);
 
@@ -45,6 +46,7 @@ int main(void)
     //2.Motor Initialization
     initialize_motor();
     init_line_sensors();
+    initECHO();
 
     piThreadCreate (line);
 
@@ -53,6 +55,8 @@ int main(void)
 
 
     while (1){
+
+        printf("echo sensor value %d",echo);
         if (left && right) 
             {
             setMotors(60);
@@ -93,5 +97,7 @@ PI_THREAD(line){
             } else {
                 left = 1;
             }
+
+            echo = distance();
         }
 }
