@@ -14,6 +14,7 @@
 #include <stdio.h>      //printf()
 #include <stdlib.h>     //exit()
 #include <signal.h>
+#include <wiringPi.h>
 #include "DEV_Config.h"
 #include "drivetrain.h"
 #include "line_sensors.h"
@@ -23,6 +24,31 @@ volatile int running = 0;
 volatile int left = 0;
 volatile int mid = 0;
 volatile int right = 0;
+
+
+#define TRIGGER 5
+#define ECHO 6
+
+int getDistance()
+{
+        //sends TRIGGER pulses
+        digitalWrite(TRIGGER, HIGH);
+        delayMicroseconds(10);
+        digitalWrite(TRIGGER, LOW);
+
+        //Wait for ECHO start
+        while (digitalRead(ECHO) == LOW)
+                ;
+        long startTime = micros();
+        while (digitalRead(ECHO) == HIGH)
+                ;
+        long travelTime = micros() - startTime;
+        int objDistance = travelTime / 58;
+
+        //returns object distance
+        return objDistance;
+}
+
 
 void run_motor();
 
@@ -63,17 +89,32 @@ int main(void)
          else if (!left && right)
             {
             turnRight(80);
+            //turnLeft(40);
             //softturnRight(80);
             } 
         else if (!right && left)
             {
             turnLeft(80);
+            //turnRight(40);
             //softturnLeft(80);
             }  
         else{
             stop();
             }
     }
+
+    pinMode(TRIGGER, OUTPUT);
+
+        //sets mode of pin echo to input
+        pinMode(ECHO, INPUT);
+
+        //TRIGGER pin must start LOW
+        digitalWrite(TRIGGER, LOW);
+        delay(100);
+        while (1)
+        {
+                printf("The Object Distance: %d cm\n", getDistance());
+        }
 
     //3.System Exit
     DEV_ModuleExit();
