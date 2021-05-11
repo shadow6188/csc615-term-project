@@ -1,34 +1,58 @@
-
 #include "echo_sensor.h"
 
-void initECHO(){
-         pinMode(TRIG, OUTPUT); 	   // sets the TRIG as output
-         pinMode(ECHO, INPUT);      // sets the ECHO as input 
+pthread_mutex_t mu = PTHREAD_MUTEX_INITIALIZER;
+
+void echoSensorSet(void){
+    wiringPiSetup();
+    pinMode(ECHO_PIN, INPUT);
+    pinMode(TRIGGER_PIN, OUTPUT);
+
+    digitalWrite(TRIGGER_PIN, LOW);
+    digitalWrite(ECHO_PIN, HIGH);
 }
 
-double distance() {
-        // reads a high-level pulse in Trig pin which lasts for least 10uS.
-        digitalWrite(TRIG, HIGH);
-        delayMicroseconds(10);
-        digitalWrite(TRIG, LOW);
+double calculateDistance(double time){
+    return ((time) * (SPEED_OF_SOUND)) / 2.0;
+}
 
-	//Waits for echo to start
-        while(digitalRead(ECHO) == LOW);
-        double startTime = micros();
+void prepareTrigger(void){
+    digitalWrite(TRIGGER_PIN, HIGH);
+    delay(10);
+    digitalWrite(TRIGGER_PIN, LOW);
+}
 
+double getTime(void){
+    clock_t start, end;
+    double delta = 0.0;
+    while(digitalRead(ECHO_PIN) == 0){}
+	start = clock();
+    while(digitalRead(ECHO_PIN) == 1){}
+    end = clock();
+    delta = (double) (end - start) / CLOCKS_PER_SEC;
+    return delta;
+}
 
-        //Waits for echo to stop
-        while(digitalRead(ECHO) == HIGH);
-        double stopTime = micros();
+void *useEchoSensor(void *ptr) {
+    printf("Using echo sensor\n");
+    while(1) {
+        prepareTrigger();
+        printf("Echo distance: %f\n", calculateDistance(getTime()));
+    }
+}
 
-        //Echo Time = stopTime - startTime
-        double echoTime = stopTime - startTime;
+double readDistance(void) {
+    double distance;
+    prepareTrigger();
+    distance = calculateDistance(getTime());
+    return distance;
+}
 
-	//Convets microseconds to seconds
-        echoTime = echoTime / 1000000;
+void displayDistance(void){
+    prepareTrigger();
+    printf("Distance: %.2f cm\n", calculateDistance(getTime()));
+}
 
-	//Distance = Echo time * sound velocity / 2
-        double distance = ( echoTime * Velocity )/2;
-
-        return distance;
+void echoSensorCleanUp(void){
+    digitalWrite(TRIGGER_PIN, LOW);
+    digitalWrite(ECHO_PIN, LOW);
 }
