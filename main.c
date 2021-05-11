@@ -17,13 +17,13 @@
 #include "DEV_Config.h"
 #include "drivetrain.h"
 #include "line_sensors.h"
-//#include "echo_sensor.h"
+
 
 volatile int running = 0;
 volatile int left = 0;
 volatile int mid = 0;
 volatile int right = 0;
-//volatile double echo = 0;
+
 void run_motor();
 PI_THREAD(line);
 
@@ -98,6 +98,6 @@ PI_THREAD(line){
                 left = 1;
             }
 
-       //     echo = distance();
+       
         }
 }
