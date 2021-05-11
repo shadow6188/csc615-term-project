@@ -84,17 +84,17 @@ int main(void)
     while (1){
         if (left && right) 
             {
-            setMotors(60);
+            setMotors(40);
             } 
          else if (!left && right)
             {
-            turnRight(80);
+            turnRight(35);
             //turnLeft(40);
             //softturnRight(80);
             } 
         else if (!right && left)
             {
-            turnLeft(80);
+            turnLeft(35);
             //turnRight(40);
             //softturnLeft(80);
             }  
