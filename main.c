@@ -59,6 +59,11 @@ int main(void)
 
 
     while (1){
+        if (distance < 100)
+        {
+            setMotors(0);
+            printf("echo sensor activated and motor stopped \n");
+        }
         if (left && right) 
             {
             setMotors(60);
@@ -112,7 +117,7 @@ PI_THREAD(sensor)
     {
 if (digitalRead(FRONT_ECHO_SENSOR)){
                 echo = 0;
-                printf("echo sensor \n");
+                //printf("echo sensor \n");
 
             }
             else {
@@ -122,10 +127,36 @@ if (digitalRead(FRONT_ECHO_SENSOR)){
             if (digitalRead(FRONT_ECHO_TRIGGER))
             {
                 trigger = 0;
-                printf( "trigger sensor \n");
+                //printf( "trigger sensor \n");
             }
             else {
                 trigger =1;
             }
     }
+}
+
+double distance() {
+        //Outputing a high-level pulse in Trig pin lasting for least 10uS.
+        digitalWrite(TRIG, HIGH);
+        delayMicroseconds(10);
+        digitalWrite(TRIG, LOW);
+
+        //Waiting for echo to start
+        while(digitalRead(ECHO) == LOW);
+        double startTime = micros();
+
+        //Waiting for echo to stop
+        while(digitalRead(ECHO) == HIGH);
+        double stopTime = micros();
+
+        ////Echo Time = stopTime - startTime
+        double echoTime = stopTime - startTime;
+
+        //Changing microseconds to seconds
+        echoTime = echoTime / 1000000;
+
+        //Distance = Echo time * sound velocity / 2
+        double distance = ( echoTime * soundVelocity )/2;
+
+        return distance;
 }
