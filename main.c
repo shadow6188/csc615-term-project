@@ -25,31 +25,6 @@ volatile int left = 0;
 volatile int mid = 0;
 volatile int right = 0;
 
-
-#define TRIGGER 5
-#define ECHO 6
-
-int getDistance()
-{
-        //sends TRIGGER pulses
-        digitalWrite(TRIGGER, HIGH);
-        delayMicroseconds(10);
-        digitalWrite(TRIGGER, LOW);
-
-        //Wait for ECHO start
-        while (digitalRead(ECHO) == LOW)
-                ;
-        long startTime = micros();
-        while (digitalRead(ECHO) == HIGH)
-                ;
-        long travelTime = micros() - startTime;
-        int objDistance = travelTime / 58;
-
-        //returns object distance
-        return objDistance;
-}
-
-
 void run_motor();
 
 PI_THREAD(line);
@@ -84,17 +59,17 @@ int main(void)
     while (1){
         if (left && right) 
             {
-            setMotors(40);
+            setMotors(30);
             } 
          else if (!left && right)
             {
-            turnRight(35);
+            turnRight(25);
             //turnLeft(40);
             //softturnRight(80);
             } 
         else if (!right && left)
             {
-            turnLeft(35);
+            turnLeft(25);
             //turnRight(40);
             //softturnLeft(80);
             }  
@@ -103,18 +78,9 @@ int main(void)
             }
     }
 
-    pinMode(TRIGGER, OUTPUT);
-
-        //sets mode of pin echo to input
-        pinMode(ECHO, INPUT);
-
-        //TRIGGER pin must start LOW
-        digitalWrite(TRIGGER, LOW);
-        delay(100);
-        while (1)
-        {
-                printf("The Object Distance: %d cm\n", getDistance());
-        }
+    while (1) {
+        
+    }
 
     //3.System Exit
     DEV_ModuleExit();
@@ -125,7 +91,7 @@ PI_THREAD(line){
         while (1){
             if (digitalRead(RSENSOR)) {
                 right = 0;
-                printf("sensor on RIGHT\n");
+                printf("sensor OFF RIGHT\n");
             } else 
             {
                 right = 1;
@@ -133,7 +99,7 @@ PI_THREAD(line){
             if (digitalRead(LSENSOR))
             {
                 left = 0;
-                printf("sensor on LEFT\n");
+                printf("sensor OFF LEFT\n");
             } else {
                 left = 1;
             }
