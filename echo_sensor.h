@@ -2,8 +2,8 @@
 #define CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_ECHO_SENSOR_H
 #include <wiringPi.h>
 
-#define FRONT_ECHO_SENSOR 5
-#define FRONT_ECHO_TRIGGER 6
+#define TRIG 5
+#define ECHO 6
 
 
 void init_line_sensors();
