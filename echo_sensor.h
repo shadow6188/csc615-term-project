@@ -1,48 +1,10 @@
-#ifndef ECHOSENSORCONTROLLER_H_   
-#define ECHOSENSORCONTROLLER_H_
-
-#include <stdio.h>
-#include <unistd.h>
-#include <time.h>
-#include <pthread.h>
+#ifndef CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_ECHO_SENSOR_H
+#define CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_ECHO_SENSOR_H
 #include <wiringPi.h>
 
-#define ECHO_PIN               22       //pin 31(GPIO 6)
-#define TRIGGER_PIN            21       //pin 29(GPIO 5)
-#define SPEED_OF_SOUND         34300.0  //speed of sound in cm
+#define FRONT_ECHO_SENSOR 5
+#define FRONT_ECHO_TRIGGER 6
 
-//This function sets the pins being used by the echo sensor.
-//Contributors:
-void  echoSensorSet(void);
 
-//Takes a double variable that indicates the times in milliseconds
-//took the echo to come back.
-//Contributors:
-double calculateDistance(double time);
-
-//This function prepares the trigger to send out the echo.
-//Contributors:
-void  prepareTrigger(void);
-
-//This function returns the time in seconds it took for the echo to
-//come back. Using time.h's clock() function 
-//This return time in milliseconds 
-//Contributors:
-double getTime(void);
-
-//This function uses the echo sensor to calculate distance.
-//Contributors:
-void *useEchoSensor(void *ptr);
-
-//Returns the distance in the ECHO_DISTANCE variable.
-double readDistance(void);
-
-//This function displays the distance that was calculated by using the echo.
-//Contributors:
-void  displayDistance(void);
-
-//This function sets all the pins off for the echo sensor.
-//Contributors:
-void echoSensorCleanUp(void);
-
-#endif
+void init_line_sensors();
+#endif //CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_LINE_SENSORS_H

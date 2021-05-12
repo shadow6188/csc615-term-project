@@ -23,6 +23,8 @@ volatile int running = 0;
 volatile int left = 0;
 volatile int mid = 0;
 volatile int right = 0;
+volatile int echo = 0;
+volatile int trigger = 0;
 
 void run_motor();
 
@@ -95,6 +97,24 @@ PI_THREAD(line){
                 printf("sensor on LEFT\n");
             } else {
                 left = 1;
+            }
+
+            if (digitalRead(FRONT_ECHO_SENSOR)){
+                echo = 0;
+                printf("echo sensor");
+
+            }
+            else {
+                echo = 1;
+            }
+
+            if (digitalRead(FRONT_ECHO_TRIGGER))
+            {
+                trigger = 0;
+                printf( "trigger sensor");
+            }
+            else {
+                trigger =1;
             }
         }
 }
