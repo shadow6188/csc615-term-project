@@ -7,5 +7,5 @@
 #define soundVelocity 34000
 
 
-void init_line_sensors();
+void init_echo_sensors();
 #endif //CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_LINE_SENSORS_H

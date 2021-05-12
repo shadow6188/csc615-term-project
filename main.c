@@ -52,7 +52,7 @@ int main(void)
     //2.Motor Initialization
     initialize_motor();
     init_line_sensors();
-    
+    inti_echo_sensors();
 
     piThreadCreate (line);
     piThreadCreate (sensor);
