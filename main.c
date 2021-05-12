@@ -60,14 +60,12 @@ int main(void)
     signal(SIGINT, Handler);
 
 
-    // prints distance 
-    // printf("Distance: %.2f cm\n", distance());
-    // delay(1000);
+   
 
 
     while (1){
-        // printf("Distance: %.2f cm\n", distance());
-        //     delay(1000);
+        printf("Distance: %.2f cm\n", distance());
+            delay(1000);
         // if (distance < 100)
         // {
         //     setMotors(0);
