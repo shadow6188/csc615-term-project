@@ -27,6 +27,8 @@ volatile int echo = 0;
 //volatile int trigger = 0;
 
 void run_motor();
+double distance();
+
 
 PI_THREAD(line);
 PI_THREAD(sensor); // this refers to IR sensor 

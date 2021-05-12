@@ -4,6 +4,7 @@
 
 #define TRIG 5
 #define ECHO 6
+#define soundVelocity 34000
 
 
 void init_line_sensors();
