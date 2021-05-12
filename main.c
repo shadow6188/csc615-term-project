@@ -31,7 +31,7 @@ double distance();
 
 
 PI_THREAD(line);
-//PI_THREAD(sensor); // this refers to IR sensor 
+PI_THREAD(sensor); // this refers to IR sensor 
 
 void  Handler(int signo)
 {
@@ -55,7 +55,7 @@ int main(void)
     //init_echo_sensors();
 
     piThreadCreate (line);
-   // piThreadCreate (sensor);
+    piThreadCreate (sensor);
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
 
@@ -120,37 +120,37 @@ PI_THREAD(line){
         }
 }
 
-// PI_THREAD(sensor)
-// {
-//     // while (1)
-//     //     {
-//     //     echo = distance();
-//     //     }
+PI_THREAD(sensor)
+{
+    while (1)
+        {
+        echo = distance();
+        }
 
-// }
+}
 
-// double distance() {
-//         //Outputing a high-level pulse in Trig pin lasting for least 10uS.
-//         digitalWrite(TRIG, HIGH);
-//         delayMicroseconds(10);
-//         digitalWrite(TRIG, LOW);
+double distance() {
+        //Outputing a high-level pulse in Trig pin lasting for least 10uS.
+        digitalWrite(TRIG, HIGH);
+        delayMicroseconds(10);
+        digitalWrite(TRIG, LOW);
 
-//         //Waiting for echo to start
-//         while(digitalRead(ECHO) == LOW);
-//         double startTime = micros();
+        //Waiting for echo to start
+        while(digitalRead(ECHO) == LOW);
+        double startTime = micros();
 
-//         //Waiting for echo to stop
-//         while(digitalRead(ECHO) == HIGH);
-//         double stopTime = micros();
+        //Waiting for echo to stop
+        while(digitalRead(ECHO) == HIGH);
+        double stopTime = micros();
 
-//         ////Echo Time = stopTime - startTime
-//         double echoTime = stopTime - startTime;
+        ////Echo Time = stopTime - startTime
+        double echoTime = stopTime - startTime;
 
-//         //Changing microseconds to seconds
-//         echoTime = echoTime / 1000000;
+        //Changing microseconds to seconds
+        echoTime = echoTime / 1000000;
 
-//         //Distance = Echo time * sound velocity / 2
-//         double distance = ( echoTime * soundVelocity )/2;
+        //Distance = Echo time * sound velocity / 2
+        double distance = ( echoTime * soundVelocity )/2;
 
-//         return distance;
-// }
+        return distance;
+}
