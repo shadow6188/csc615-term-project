@@ -66,11 +66,13 @@ int main(void)
 
 
     while (1){
-        if (distance < 100)
-        {
-            setMotors(0);
-            printf("echo sensor activated and motor stopped \n");
-        }
+        printf("Distance: %.2f cm\n", distance());
+            delay(1000);
+        // if (distance < 100)
+        // {
+        //     setMotors(0);
+        //     printf("echo sensor activated and motor stopped \n");
+        // }
         if (left && right) 
             {
             setMotors(60);
