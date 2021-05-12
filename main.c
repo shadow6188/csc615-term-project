@@ -122,10 +122,10 @@ PI_THREAD(line){
 
 PI_THREAD(sensor)
 {
-    while (1)
-        {
-        echo = distance();
-        }
+    // while (1)
+    //     {
+    //     echo = distance();
+    //     }
 
 }
 
