@@ -58,6 +58,11 @@ int main(void)
     signal(SIGINT, Handler);
 
 
+    // prints distance 
+    printf("Distance: %.2f cm\n", distance());
+    delay(1000);
+
+
     while (1){
         if (distance < 100)
         {
