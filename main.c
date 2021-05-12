@@ -29,6 +29,7 @@ volatile int trigger = 0;
 void run_motor();
 
 PI_THREAD(line);
+PI_THREAD(sensor); // this refers to IR sensor 
 
 void  Handler(int signo)
 {
@@ -52,7 +53,7 @@ int main(void)
     
 
     piThreadCreate (line);
-
+    piThreadCreate (sensor);
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
 
@@ -88,9 +89,11 @@ PI_THREAD(line){
                 right = 0;
                 printf("sensor on RIGHT\n");
             } else 
+
             {
                 right = 1;
             }
+
             if (digitalRead(LSENSOR))
             {
                 left = 0;
@@ -99,9 +102,17 @@ PI_THREAD(line){
                 left = 1;
             }
 
-            if (digitalRead(FRONT_ECHO_SENSOR)){
+            
+        }
+}
+
+PI_THREAD(sensor)
+{
+    while (1)
+    {
+if (digitalRead(FRONT_ECHO_SENSOR)){
                 echo = 0;
-                printf("echo sensor");
+                printf("echo sensor \n");
 
             }
             else {
@@ -111,10 +122,10 @@ PI_THREAD(line){
             if (digitalRead(FRONT_ECHO_TRIGGER))
             {
                 trigger = 0;
-                printf( "trigger sensor");
+                printf( "trigger sensor \n");
             }
             else {
                 trigger =1;
             }
-        }
+    }
 }
