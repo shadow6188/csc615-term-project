@@ -66,8 +66,8 @@ int main(void)
 
 
     while (1){
-        printf("Distance: %.2f cm\n", distance());
-            delay(1000);
+        // printf("Distance: %.2f cm\n", distance());
+        //     delay(1000);
         // if (distance < 100)
         // {
         //     setMotors(0);
