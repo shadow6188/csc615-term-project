@@ -63,13 +63,13 @@ int main(void)
             } 
          else if (!left && right)
             {
-            turnRight(25);
+            turnLeft(25);
             //turnLeft(40);
             //softturnRight(80);
             } 
         else if (!right && left)
             {
-            turnLeft(25);
+            turnRight(25);
             //turnRight(40);
             //softturnLeft(80);
             }  
