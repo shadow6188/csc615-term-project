@@ -16,16 +16,22 @@
 #include "DEV_Config.h"
 #include "drivetrain.h"
 #include "line_sensors.h"
-#include "echo_sensor.h"
 
 volatile int running = 0;
 volatile int left = 0;
 volatile int mid = 0;
 volatile int right = 0;
 
+#define TRUE (1 == 1)
+#define soundVelocity 34000
+
+#define TRIG 5 //assigning TRIG to GPIO 5
+#define ECHO 6 //assigning Echo to GPIO  6
+
 void run_motor();
 
 PI_THREAD(line);
+PI_THREAD(sensor);
 
 void  Handler(int signo)
 {
@@ -34,6 +40,35 @@ void  Handler(int signo)
     stop();
     DEV_ModuleExit();
     exit(0);
+}
+
+double distance()
+{
+        //Outputing a high-level pulse in Trig pin lasting for least 10uS.
+        digitalWrite(TRIG, HIGH);
+        delayMicroseconds(10);
+        digitalWrite(TRIG, LOW);
+
+        //Waiting for echo to start
+        while (digitalRead(ECHO) == LOW)
+                ;
+        double startTime = micros();
+
+        //Waiting for echo to stop
+        while (digitalRead(ECHO) == HIGH)
+                ;
+        double stopTime = micros();
+
+        ////Echo Time = stopTime - startTime
+        double echoTime = stopTime - startTime;
+
+        //Changing microseconds to seconds
+        echoTime = echoTime / 1000000;
+
+        //Distance = Echo time * sound velocity / 2
+        double distance = (echoTime * soundVelocity) / 2;
+
+        return distance;
 }
 
 
@@ -49,6 +84,7 @@ int main(void)
     
 
     piThreadCreate (line);
+    piThreadCreate(sensor);
 
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
@@ -89,7 +125,7 @@ PI_THREAD(line){
         while (1){
             if (digitalRead(RSENSOR)) {
                 right = 0;
-                printf("sensor OFF RIGHT\n");
+                //printf("sensor OFF RIGHT\n");
             } else 
             {
                 right = 1;
@@ -97,9 +133,25 @@ PI_THREAD(line){
             if (digitalRead(LSENSOR))
             {
                 left = 0;
-                printf("sensor OFF LEFT\n");
+               // printf("sensor OFF LEFT\n");
             } else {
                 left = 1;
             }
         }
+}
+
+PI_THREAD(sensor) {
+     printf("Activating Echo  Sensor.....\n");
+
+        //Setting up to start
+        wiringPiSetupGpio();
+
+        //while TRUE
+        while (1 == 1)
+        {
+                //prints distance
+                printf("Distance: %.2f cm\n", distance());
+                delay(1000);
+        }
+        return 0;
 }
