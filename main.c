@@ -21,6 +21,7 @@ volatile int running = 0;
 volatile int left = 0;
 volatile int mid = 0;
 volatile int right = 0;
+volatile double obstacle_distance = 0;
 
 #define TRUE (1 == 1)
 #define soundVelocity 34000
@@ -91,6 +92,9 @@ int main(void)
 
 
     while (1){
+    //    if (obstacle_distance <= 12) {
+    //        printf("obstacle detected \n");
+    //    }
         if (left && right) 
             {
             setMotors(30);
