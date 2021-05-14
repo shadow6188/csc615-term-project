@@ -1,15 +1,13 @@
 /**************************************************************
-* Class: CSC-615-01 Spring 2020
-* Name: Gerardo Ochoa
-* Student ID: 918631875
-* Github ID: shadow6188
-* Project: Assignment 3 - Motors
+* Class: CSC-615-01 Spring 2021
+* Name: Team Autonomous
+* Student ID: 918631875, 920831584
+* Github ID: pramodkhatri10
+* Project: final project
 *
 * File: main.c
 *
-* Description: main function where button press logic and
-* motor running are handled. Modified from main provided in
-* waveshare example code
+* Description: main function where the motor run, lane sensor, echo sensors are run
 **************************************************************/
 #include <stdio.h>      //printf()
 #include <stdlib.h>     //exit()
