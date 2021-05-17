@@ -5,6 +5,8 @@
 #ifndef CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_ECHO_SENSORS_H
 #define CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_ECHO_SENSORS_H
 
+#include <wiringPi.h>
+
 #define TRIG 5 //assigning TRIG to GPIO 5
 #define ECHO 6 //assigning Echo to GPIO  6
 
