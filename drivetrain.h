@@ -1,15 +1,3 @@
-/**************************************************************
-* Class: CSC-615-01 Spring 2020
-* Name: Gerardo Ochoa
-* Student ID: 918631875
-* Github ID: shadow6188
-* Project: Assignment 3 - Motors
-*
-* File: customDriver.h
-*
-* Description: header for motor driver
-**************************************************************/
-
 #include "PCA9685.h"
 
 // Right side motors
@@ -27,8 +15,6 @@ void initialize_motor();
 void setMotors(int speed);
 void setRightMotors(int speed);
 void setLeftMotors(int speed);
-void softturnLeft(int speed);
-void hardturnLeft(int speed);
-void softturnRight(int speed);
-void hardturnRight(int speed);
+void turnLeft(int speed);
+void turnRight(int speed);
 void stop();
