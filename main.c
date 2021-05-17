@@ -139,7 +139,7 @@ PI_THREAD(sensor) {
      printf("Activating Echo  Sensor.....\n");
 
         //Setting up to start
-        wiringPiSetupGpio();
+        wiringPiSetup();
 
         //while TRUE
         while (1 == 1)
