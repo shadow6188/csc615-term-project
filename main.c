@@ -111,7 +111,7 @@ int main(void)
             //softturnLeft(80);
             }  
 
-        else if (distance < 20)
+        else if (distance < 10 && left && right )
             {
                 setMotors(0);
             }
