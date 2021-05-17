@@ -67,12 +67,12 @@ void hardturnRight(int speed){
     setRightMotors(speed - 30);
 }
 void turnLeft(int speed){
-    setLeftMotors((int)speed/2);
+    setLeftMotors(0);
     setRightMotors(speed);
 }
 void turnRight(int speed){
     setLeftMotors(speed);
-    setRightMotors((int)speed / 2);
+    setRightMotors(0);
 }
 void stop(){
     PCA9685_SetPwmDutyCycle(PWMA, 0);
