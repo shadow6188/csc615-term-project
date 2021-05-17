@@ -61,15 +61,15 @@ int main(void)
     while (1){
 
         if (obstacle_distance < 15){
-            printf("obstacle detected");
+            printf("obstacle detected \n");
             stop();
         } else {
             if (left && right) {
                 setMotors(30);
             } else if (!left && right) {
-                turnLeft(25);
+                turnLeft(30);
             } else if (!right && left) {
-                turnRight(25);
+                turnRight(30);
             } else {
                 stop();
             }
