@@ -1,13 +1,13 @@
-#include "echo_sensor.h"
+// #include "echo_sensor.h"
 
-void init_echo_sensors(){
-    pinMode(TRIG, OUTPUT);
-    pinMode(ECHO, INPUT);
+// void init_echo_sensors(){
+//     pinMode(TRIG, OUTPUT);
+//     pinMode(ECHO, INPUT);
 
 
 
-    //setting trigger to low to start
-    digitalWrite(TRIG, LOW);
-    delay(30);
-}
+//     //setting trigger to low to start
+//     digitalWrite(TRIG, LOW);
+//     delay(30);
+// }
 
