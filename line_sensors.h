@@ -1,13 +1,9 @@
-//
-// Created by gerardo on 5/3/21.
-//
-
 #ifndef CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_LINE_SENSORS_H
 #define CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_LINE_SENSORS_H
 #include <wiringPi.h>
 
-#define RSENSOR 22
-#define MSENSOR 17
+#define RSENSOR 17
+//#define MSENSOR 17
 #define LSENSOR 27
 
 void init_line_sensors();
