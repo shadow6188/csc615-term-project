@@ -67,8 +67,8 @@ double distance()
         echoTime = echoTime / 1000000;
 
         //Distance = Echo time * sound velocity / 2
-        double distance = (echoTime * soundVelocity) / 2;
-        return distance;
+         obstacle_distance = (echoTime * soundVelocity) / 2;
+        return obstacle_distance;
 }
 
 
@@ -111,7 +111,7 @@ int main(void)
             //softturnLeft(80);
             }  
 
-        else if (distance < 10.0 && left && right )
+        else if (obstacle_distance < 10.0 && left && right )
             {
                 setMotors(0);
             }
