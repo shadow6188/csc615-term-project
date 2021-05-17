@@ -23,7 +23,6 @@ volatile int mid = 0;
 volatile int right = 0;
 volatile double obstacle_distance = 0;
 
-#define TRUE (1 == 1)
 #define soundVelocity 34000
 
 #define TRIG 5 //assigning TRIG to GPIO 5
@@ -41,6 +40,18 @@ void  Handler(int signo)
     stop();
     DEV_ModuleExit();
     exit(0);
+}
+
+void setup() {
+        //setting up wiringPi library
+        //setting Trig as input/ Echo as output
+        wiringPiSetupGpio();
+        pinMode(TRIG, OUTPUT);
+        pinMode(ECHO, INPUT);
+
+        //setting trigger to low to start
+        digitalWrite(TRIG, LOW);
+        delay(30);
 }
 
 double distance()
@@ -68,7 +79,6 @@ double distance()
 
         //Distance = Echo time * sound velocity / 2
         double distance = (echoTime * soundVelocity) / 2;
-
         return distance;
 }
 
@@ -145,13 +155,12 @@ PI_THREAD(line){
 }
 
 PI_THREAD(sensor) {
+
+    setup();
      printf("Activating Echo  Sensor.....\n");
 
-        //Setting up to start
-        wiringPiSetupGpio();
-
         //while TRUE
-        while (1 == 1)
+        while (1)
         {
                 //prints distance
                 printf("Distance: %.2f cm\n", distance());
