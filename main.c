@@ -49,9 +49,11 @@ int main(void)
 
     while (1){
 
-        while (obstacle_distance < 25){
+        while (obstacle_distance < 35){
             printf("obstacle detected \n");
             turnRight(50);
+            delay(2000)
+            turnLeft(50)
         } 
     
             if (left && right) {
