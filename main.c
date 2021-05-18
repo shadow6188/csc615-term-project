@@ -2,6 +2,7 @@
 #include <stdlib.h>     //exit()
 #include <signal.h>
 #include <wiringPi.h>
+#include "echo_sensors.h"
 #include "DEV_Config.h"
 #include "drivetrain.h"
 #include "line_sensors.h"
@@ -12,15 +13,10 @@ volatile int mid = 0;
 volatile int right = 0;
 volatile double obstacle_distance = 0;
 
-#define soundVelocity 34000
-
-#define TRIG 5 //assigning TRIG to GPIO 5
-#define ECHO 6 //assigning Echo to GPIO  6
-
 void run_motor();
 
 PI_THREAD(line);
-PI_THREAD(sensor);
+PI_THREAD(echo);
 
 void  Handler(int signo)
 {
@@ -29,46 +25,6 @@ void  Handler(int signo)
     stop();
     DEV_ModuleExit();
     exit(0);
-}
-
-void setup() {
-        //setting up wiringPi library
-        //setting Trig as input/ Echo as output
-        wiringPiSetupGpio();
-        pinMode(TRIG, OUTPUT);
-        pinMode(ECHO, INPUT);
-
-        //setting trigger to low to start
-        digitalWrite(TRIG, LOW);
-        delay(30);
-}
-
-double distance()
-{
-        //Outputing a high-level pulse in Trig pin lasting for least 10uS.
-        digitalWrite(TRIG, HIGH);
-        delayMicroseconds(10);
-        digitalWrite(TRIG, LOW);
-
-        //Waiting for echo to start
-        while (digitalRead(ECHO) == LOW)
-                ;
-        double startTime = micros();
-
-        //Waiting for echo to stop
-        while (digitalRead(ECHO) == HIGH)
-                ;
-        double stopTime = micros();
-
-        ////Echo Time = stopTime - startTime
-        double echoTime = stopTime - startTime;
-
-        //Changing microseconds to seconds
-        echoTime = echoTime / 1000000;
-
-        //Distance = Echo time * sound velocity / 2
-        double distance = (echoTime * soundVelocity) / 2;
-        return distance;
 }
 
 
@@ -81,46 +37,32 @@ int main(void)
     //2.Motor Initialization
     initialize_motor();
     init_line_sensors();
+    init_echo_sensors();
     
 
     piThreadCreate (line);
-    piThreadCreate(sensor);
+    piThreadCreate(echo);
 
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
 
 
     while (1){
-    //    if (obstacle_distance <= 12) {
-    //        printf("obstacle detected \n");
-    //    }
-        if (left && right) 
-            {
-            setMotors(30);
-            } 
-         else if (!left && right)
-            {
-            turnLeft(25);
-            //turnLeft(40);
-            //softturnRight(80);
-            } 
-        else if (!right && left)
-            {
-            turnRight(25);
-            //turnRight(40);
-            //softturnLeft(80);
-            }  
 
-        else if (distance < 10.0 && left && right )
-            {
-                setMotors(0);
+        while (obstacle_distance < 25){
+            printf("obstacle detected \n");
+            turnRight(50);
+        } 
+    
+            if (left && right) {
+                setMotors(30);
+            } else if (!left && right) {
+                turnLeft(31);
+            } else if (!right && left) {
+                turnRight(31);
+            } else {
+                stop();
             }
-        else{
-            stop();
-            }
-    }
-
-    while (1) {
         
     }
 
@@ -133,31 +75,27 @@ PI_THREAD(line){
         while (1){
             if (digitalRead(RSENSOR)) {
                 right = 0;
-                //printf("sensor OFF RIGHT\n");
-            } else 
-            {
+            } else{
                 right = 1;
             }
-            if (digitalRead(LSENSOR))
-            {
+            if (digitalRead(LSENSOR)){
                 left = 0;
-               // printf("sensor OFF LEFT\n");
             } else {
                 left = 1;
             }
         }
 }
 
-PI_THREAD(sensor) {
+PI_THREAD(echo) {
 
-    setup();
      printf("Activating Echo  Sensor.....\n");
 
         //while TRUE
         while (1)
         {
                 //prints distance
-                printf("Distance: %.2f cm\n", distance());
+                obstacle_distance = distance();
+                printf("Distance: %.2f cm\n", obstacle_distance);
                 delay(1000);
         }
         return 0;

@@ -1,15 +1,3 @@
-/**************************************************************
-* Class: CSC-615-01 Spring 2020
-* Name: Gerardo Ochoa
-* Student ID: 918631875
-* Github ID: shadow6188
-* Project: Assignment 3 - Motors
-*
-* File: customDriver.c
-*
-* Description:File with functions to direct motor connected to
-* Waveshare HAT
-**************************************************************/
 #include "drivetrain.h"
 
 int check_speed(int speed);
