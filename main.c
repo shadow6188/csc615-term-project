@@ -2,7 +2,7 @@
 #include <stdlib.h>     //exit()
 #include <signal.h>
 #include <wiringPi.h>
-#include "echo_sensors.h"
+#include "echo_sensor.h"
 #include "DEV_Config.h"
 #include "drivetrain.h"
 #include "line_sensors.h"
@@ -51,9 +51,9 @@ int main(void)
 
         while (obstacle_distance < 35){
             printf("obstacle detected \n");
-            turnRight(50);
-            delay(2000)
-            turnLeft(50)
+            turnRight(30);
+            delay(2000);
+            turnLeft(30);
         } 
     
             if (left && right) {

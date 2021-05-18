@@ -1,5 +1,5 @@
 
-#include "echo_sensors.h"
+#include "echo_sensor.h"
 
 void init_echo_sensors() {
     //setting up wiringPi library
