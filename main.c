@@ -55,7 +55,8 @@ int main(void)
             setMotors(20);
             if (left && right)
             {
-                turnLeft(30);
+                turnRight(30);
+                
             }
             //this tries to go back to the lane 
             
