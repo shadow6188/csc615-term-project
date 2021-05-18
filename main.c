@@ -49,14 +49,15 @@ int main(void)
 
     while (1){
 
-        while (obstacle_distance < 30){
-            printf("obstacle detected \n");
-            hardturnRight(50);
+        while (obstacle_distance < 33){
+            //printf("obstacle detected \n");
+            turnRight(70);
+            setMotors(60);
             if (!left && !right)
             {
-                 turnLeft(50);
-                 setMotors(20);
-                 //sleep(2);
+                delay(2000)
+                 turnLeft(60);
+                 setMotors(30);
                 
             }
             //this tries to go back to the lane 
