@@ -56,7 +56,7 @@ int main(void)
             if (left && right)
             {
                  turnLeft(30);
-                 delay(2000);
+                 sleep(2)
                  turnRight(40);
                 
             }
