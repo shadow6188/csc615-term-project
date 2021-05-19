@@ -1,5 +1,5 @@
-#include <stdio.h>      //printf()
-#include <stdlib.h>     //exit()
+#include <stdio.h>  //printf()
+#include <stdlib.h> //exit()
 #include <signal.h>
 #include <wiringPi.h>
 #include "echo_sensor.h"
@@ -18,7 +18,7 @@ void run_motor();
 PI_THREAD(line);
 PI_THREAD(echo);
 
-void  Handler(int signo)
+void Handler(int signo)
 {
     //System Exit
     printf("\r\nHandler:Motor Stop\r\n");
@@ -27,53 +27,48 @@ void  Handler(int signo)
     exit(0);
 }
 
-
 int main(void)
 {
     //1.System Initialization
-    if(DEV_ModuleInit())
+    if (DEV_ModuleInit())
         exit(0);
-    
+
     //2.Motor Initialization
     initialize_motor();
     init_line_sensors();
     init_echo_sensors();
-    
 
-    piThreadCreate (line);
+    piThreadCreate(line);
     piThreadCreate(echo);
 
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
 
+    while (1)
+    {
 
-    while (1){
+        while (obstacle_distance < 30)
+        {
+            printf("obstacle detected \n");
+            stop();
+        }
 
-        while (obstacle_distance < 33){
-            //printf("obstacle detected \n");
-            turnRight(70);
-            setMotors(60);
-            if (!left && !right)
-            {
-                delay(2000)
-                 turnLeft(60);
-                 setMotors(30);
-                
-            }
-            //this tries to go back to the lane 
-            
-        } 
-    
-            if (left && right) {
-                setMotors(30);
-            } else if (!left && right) {
-                turnLeft(31);
-            } else if (!right && left) {
-                turnRight(31);
-            } else {
-                stop();
-            }
-        
+        if (left && right)
+        {
+            setMotors(37);
+        }
+        else if (!left && right)
+        {
+            turnLeft(31);
+        }
+        else if (!right && left)
+        {
+            turnRight(31);
+        }
+        else
+        {
+            stop();
+        }
     }
 
     //3.System Exit
@@ -81,32 +76,41 @@ int main(void)
     return 0;
 }
 
-PI_THREAD(line){
-        while (1){
-            if (digitalRead(RSENSOR)) {
-                right = 0;
-            } else{
-                right = 1;
-            }
-            if (digitalRead(LSENSOR)){
-                left = 0;
-            } else {
-                left = 1;
-            }
+PI_THREAD(line)
+{
+    while (1)
+    {
+        if (digitalRead(RSENSOR))
+        {
+            right = 0;
         }
+        else
+        {
+            right = 1;
+        }
+        if (digitalRead(LSENSOR))
+        {
+            left = 0;
+        }
+        else
+        {
+            left = 1;
+        }
+    }
 }
 
-PI_THREAD(echo) {
+PI_THREAD(echo)
+{
 
-     printf("Activating Echo  Sensor.....\n");
+    printf("Activating Echo  Sensor.....\n");
 
-        //while TRUE
-        while (1)
-        {
-                //prints distance
-                obstacle_distance = distance();
-                printf("Distance: %.2f cm\n", obstacle_distance);
-                delay(1000);
-        }
-        return 0;
+    //while TRUE
+    while (1)
+    {
+        //prints distance
+        obstacle_distance = distance();
+        printf("Distance: %.2f cm\n", obstacle_distance);
+        delay(1000);
+    }
+    return 0;
 }
