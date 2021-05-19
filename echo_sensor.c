@@ -1,8 +1,15 @@
-//
-// Created by gerardo on 5/17/21.
-//
+/**************************************************************
+* Class: CSC-615-01 Spring 2021
+* Name: Team Autonomous
+* Github ID: pramodkhatri10
+* Project: final project
+*
+* File: echo_sensor.c
+*
+* Description: 
+**************************************************************/
 
-#include "echo_sensors.h"
+#include "echo_sensor.h"
 
 void init_echo_sensors() {
     //setting up wiringPi library

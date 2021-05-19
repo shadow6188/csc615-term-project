@@ -1,6 +1,13 @@
-//
-// Created by gerardo on 5/3/21.
-//
+/**************************************************************
+* Class: CSC-615-01 Spring 2021
+* Name: Team Autonomous
+* Github ID: pramodkhatri10
+* Project: final project
+*
+* File: line_sensors.c
+*
+* Description: 
+**************************************************************/
 
 #include "line_sensors.h"
 

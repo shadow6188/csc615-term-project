@@ -1,7 +1,6 @@
 /**************************************************************
 * Class: CSC-615-01 Spring 2021
 * Name: Team Autonomous
-* Student ID: 918631875, 920831584
 * Github ID: pramodkhatri10
 * Project: final project
 *
@@ -13,7 +12,7 @@
 #include <stdlib.h>     //exit()
 #include <signal.h>
 #include <wiringPi.h>
-#include "echo_sensors.h"
+#include "echo_sensor.h"
 #include "DEV_Config.h"
 #include "drivetrain.h"
 #include "line_sensors.h"
@@ -60,16 +59,16 @@ int main(void)
 
     while (1){
 
-        if (obstacle_distance < 25){
+        if (obstacle_distance < 15){
             printf("obstacle detected \n");
             stop();
         } else {
             if (left && right) {
-                setMotors(30);
+                setMotors(35);
             } else if (!left && right) {
-                turnLeft(31);
+                turnLeft(36);
             } else if (!right && left) {
-                turnRight(31);
+                turnRight(36);
             } else {
                 stop();
             }

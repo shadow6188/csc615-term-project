@@ -1,14 +1,12 @@
 /**************************************************************
-* Class: CSC-615-01 Spring 2020
-* Name: Gerardo Ochoa
-* Student ID: 918631875
-* Github ID: shadow6188
-* Project: Assignment 3 - Motors
+* Class: CSC-615-01 Spring 2021
+* Name: Team Autonomous
+* Github ID: pramodkhatri10
+* Project: final project
 *
-* File: customDriver.c
+* File: drivetrain.c
 *
-* Description:File with functions to direct motor connected to
-* Waveshare HAT
+* Description: 
 **************************************************************/
 #include "drivetrain.h"
 
