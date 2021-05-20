@@ -64,11 +64,11 @@ int main(void)
             stop();
         } else {
             if (left && right) {
-                setMotors(35);
+                setMotors(30);
             } else if (!left && right) {
-                turnLeft(36);
+                turnLeft(31);
             } else if (!right && left) {
-                turnRight(36);
+                turnRight(31);
             } else {
                 stop();
             }
