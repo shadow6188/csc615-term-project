@@ -18,6 +18,8 @@ void initialize_motor(){// initialize ic2
 }
 
 void setRightMotors(int speed){
+    // sets right side motors to speed
+    // if speed is negative switches direction of motor
     speed = check_speed(speed);
 
     if (speed > 0){
@@ -31,6 +33,8 @@ void setRightMotors(int speed){
     }
 }
 void setLeftMotors(int speed){
+    // sets left side motors to speed
+    // if speed is negative switches direction of motor
     speed = check_speed(speed);
 
     if (speed > 0){
@@ -45,38 +49,28 @@ void setLeftMotors(int speed){
 }
 
 void setMotors(int speed){
+    //passes speed to left & right motors
     setRightMotors(speed);
     setLeftMotors(speed);
 }
-void softturnLeft(int speed){
-    setLeftMotors(speed - 15);
-    setRightMotors(speed);
-}
-void softturnRight(int speed){
-    setLeftMotors(speed);
-    setRightMotors(speed - 15);
-}
-void hardturnLeft(int speed){
-    setLeftMotors(speed - 30);
-    setRightMotors(speed);
-}
-void hardturnRight(int speed){
-    setLeftMotors(speed);
-    setRightMotors(speed - 30);
-}
+
 void turnLeft(int speed){
+    // sets left motor to zero so that car will turn to left
     setLeftMotors(0);
     setRightMotors(speed);
 }
 void turnRight(int speed){
+    // sets right motor to zero so that car will turn to left
     setLeftMotors(speed);
     setRightMotors(0);
 }
 void stop(){
+    // sets both motors pwm value to zero, stopping the car
     PCA9685_SetPwmDutyCycle(PWMA, 0);
     PCA9685_SetPwmDutyCycle(PWMB,0);
 }
 int check_speed(int speed){
+    // checks value if speed is within 100 & -100
     if (speed > 100)
         return 100;
     else if (speed < -100)

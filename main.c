@@ -56,7 +56,12 @@ int main(void)
     // Exception handling:ctrl + c
     signal(SIGINT, Handler);
 
-
+    // main loop
+    // if obstacle detected stop
+    // else if left & right are on then go forward
+    // if only right is on then turn left
+    // if only left is on then turn right
+    // if both are off the stop
     while (1){
 
         if (obstacle_distance < 15){
@@ -86,11 +91,13 @@ int main(void)
 
 PI_THREAD(line){
         while (1){
+            // read right sensor ond set right depending on the value
             if (digitalRead(RSENSOR)) {
                 right = 0;
             } else{
                 right = 1;
             }
+            // read left sensor ond set left depending on the value
             if (digitalRead(LSENSOR)){
                 left = 0;
             } else {
@@ -106,9 +113,9 @@ PI_THREAD(echo) {
         //while TRUE
         while (1)
         {
-                //prints distance
+                // reads distance value from echo sensor & sets global variable obstacle_distance
                 obstacle_distance = distance();
-                printf("Distance: %.2f cm\n", obstacle_distance);
+                //printf("Distance: %.2f cm\n", obstacle_distance);
                 delay(1000);
         }
         return 0;

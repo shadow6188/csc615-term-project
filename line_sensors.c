@@ -12,7 +12,7 @@
 #include "line_sensors.h"
 
 void init_line_sensors(){
+    // initializing sensor pins to input mode
     pinMode(RSENSOR, INPUT);
-    //pinMode(MSENSOR, INPUT);
     pinMode(LSENSOR, INPUT);
 }
