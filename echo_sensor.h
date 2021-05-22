@@ -6,7 +6,9 @@
 *
 * File: echo_sensor.h
 *
-* Description: 
+* Description: contains headers for echo sensor functions and
+* defines gpio pin numbers for the echo sensor trigger and return
+* pins
 **************************************************************/
 
 #ifndef CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_ECHO_SENSORS_H

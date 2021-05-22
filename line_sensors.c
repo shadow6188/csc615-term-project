@@ -6,7 +6,7 @@
 *
 * File: line_sensors.c
 *
-* Description: 
+* Description: functions having to do with line sensor
 **************************************************************/
 
 #include "line_sensors.h"

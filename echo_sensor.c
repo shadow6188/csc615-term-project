@@ -6,7 +6,8 @@
 *
 * File: echo_sensor.c
 *
-* Description: 
+* Description: contains functions which involve use of echo
+*  sensor
 **************************************************************/
 
 #include "echo_sensor.h"

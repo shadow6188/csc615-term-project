@@ -6,7 +6,8 @@
 *
 * File: line_sensors.c
 *
-* Description: 
+* Description: headers for line sensor functions, and
+* define gpio pin number for line sensors
 **************************************************************/
 
 #ifndef CSC615_GROUP_TERM_PROJECT_PRAMODKHATRI10_LINE_SENSORS_H

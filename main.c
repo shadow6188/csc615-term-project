@@ -6,7 +6,8 @@
 *
 * File: main.c
 *
-* Description: main function where the motor run, lane sensor, echo sensors are run
+* Description: main function where the motor run, lane sensor,
+* and echo sensors run
 **************************************************************/
 #include <stdio.h>      //printf()
 #include <stdlib.h>     //exit()
