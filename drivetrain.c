@@ -6,7 +6,7 @@
 *
 * File: drivetrain.c
 *
-* Description: 
+* Description: contains functions which involves the use of motors and their speed control
 **************************************************************/
 #include "drivetrain.h"
 

@@ -6,7 +6,7 @@
 *
 * File: drivetrain.h
 *
-* Description: 
+* Description: defines functions for motors and their speed control and contains header files needed for motors
 **************************************************************/
 
 #include "PCA9685.h"

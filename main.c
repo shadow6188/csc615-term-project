@@ -26,6 +26,7 @@ volatile double obstacle_distance = 0;
 
 void run_motor();
 
+//declares thread functions for lane and echo sensor
 PI_THREAD(line);
 PI_THREAD(echo);
 
