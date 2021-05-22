@@ -37,6 +37,17 @@ void  Handler(int signo)
     exit(0);
 }
 
+//gives direction and speed control once obsatcle is detected
+void obstacle_avoidance () {
+        turnRight(70); //speed at 70
+        delay(3000); //3 sec
+        setMotors(40); //speed at 40
+        delay(3000); //3 sec
+        turnLeft(70); //speed at 70
+        delay(6000); //6 sec
+    }
+}
+
 
 int main(void)
 {
@@ -67,6 +78,7 @@ int main(void)
         if (obstacle_distance < 15){
             printf("obstacle detected \n");
             stop();
+            obstacle_avoidance();
         } else {
             if (left && right) {
                 setMotors(30);
