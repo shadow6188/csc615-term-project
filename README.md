@@ -5,7 +5,7 @@ Welcome to Raspberry Pi Autonomous Car our term project for CSC 615 UNIX Program
 Our Task was to create a robot car with the capability to autonomously follow a track and maneuver around any obstacles on that track.
 
 ## Robot build
-
+_______________________________________
 ### parts
 |1. 2x TCRT5000 IR sensors | 2. 1x Ultrasonic Module HC-SR04|3. 2x motors|4. 2x wheels|5. 1x swivel caster wheel|
 |---------------|-----------|-------------|-------------------|------|
@@ -14,3 +14,10 @@ Our Task was to create a robot car with the capability to autonomously follow a 
 |6. 2x chassis frame|7. 1x power bank|8. 3x 9800mAh Battery Rechargeable|9. 1x Motor Driver Hat
 |-------|---------|---------|-----------|
 <img alt="frame" height="200" src="img/frame.png" width="100"/>|<img alt="power bank" height="150" src="img/powerbank.png" width="100"/>|<img alt="batteries" height="150" src="img/batteries.png" width="100"/>|<img alt="motorshield" height="120" src="img/motorshield.png" width="150"/>|
+
+_____________________________________
+###Hardware Diagrams
+
+![sensors-diagram](img/Hardware_diagram.png)
+![motors-diagram](img/Motorshield_diagram.png)
+______________________________________
