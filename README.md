@@ -16,8 +16,29 @@ _______________________________________
 <img alt="frame" height="200" src="img/frame.png" width="100"/>|<img alt="power bank" height="150" src="img/powerbank.png" width="100"/>|<img alt="batteries" height="150" src="img/batteries.png" width="100"/>|<img alt="motorshield" height="120" src="img/motorshield.png" width="150"/>|
 
 _____________________________________
-###Hardware Diagrams
+### Hardware Diagrams
 
 ![sensors-diagram](img/Hardware_diagram.png)
 ![motors-diagram](img/Motorshield_diagram.png)
 ______________________________________
+
+### GPIO pin assignments for sensors
+1. HC-SR04 Sensor
+
+|VCC|Trig|Echo|Gnd|
+|----|----|----|----|
+|5V power|GPIO 5 |GPIO 6 |Ground|
+|physical pin 1|physical pin 29|physical pin 31|physical pin 39| 
+2. Right TCRT500 Sensor
+
+|VCC|GND|D0 |A0 |
+|---|---|---|---|
+|3V3 power|Ground|GPIO 27| |
+|physical pin 17|physical pin 14|physical pin 13|not used
+
+3.Left TCRT500 Sensor
+
+|VCC|GND|D0|A0|
+|---|---|---|---|
+|3V3 power|Ground|GPIO 17| |
+|physical pin 1|physical pin 9|physical pin 11|not used|
