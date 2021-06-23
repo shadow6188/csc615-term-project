@@ -8,20 +8,20 @@ Our Task was to create a robot car with the capability to autonomously follow a 
 
 ### parts
 1. 2x TCRT5000 IR sensors
-   <img alt="lane sensors" height="150" src="img/IR_sensor.jpg" width="100"/>
+<img alt="lane sensors" height="150" src="img/IR_sensor.jpg" width="100"/>
 2. 1x Ultrasonic Module HC-SR04
-![echo sensor](img/echo_sensor.jpg)
+<img alt="echo sensor" height="150" src="img/echo_sensor.jpg" width="100"/>
 3. 2x motors
-![motor](img/motor.jpg)
+<img alt="motor" height="150" src="img/motor.jpg" width="100"/>
 4. 2x wheels
-![wheel](img/wheel.jpg)
+<img alt="wheel" height="100" src="img/wheel.jpg" width="100"/>
 5. 1x swivel caster wheel
-   ![swivel wheel](img/swivel_caster_wheel.png)
+<img alt="swivel wheel" height="120" src="img/swivel_caster_wheel.png" width="100"/>
 6. 2x chassis frame
-![frame](img/frame.png)
+<img alt="frame" height="200" src="img/frame.png" width="100"/>
 7. 1x power bank
-![power bank](img/powerbank.png)
+<img alt="power bank" height="150" src="img/powerbank.png" width="100"/>
 8. 3x 9800mAh Battery Rechargeable
-![batteries](img/batteries.png)
+<img alt="batteries" height="150" src="img/batteries.png" width="100"/>
 9. 1x Motor Driver Hat
-![motorshield](img/motorshield.png)
+   <img alt="motorshield" height="120" src="img/motorshield.png" width="150"/>
