@@ -4,6 +4,9 @@ Welcome to Raspberry Pi Autonomous Car our term project for CSC 615 UNIX Program
 
 Our Task was to create a robot car with the capability to autonomously follow a track and maneuver around any obstacles on that track.
 
+The concept behind the car was to have two line sensors, one on each side of the car to detect track and an echo sensor to detect any obstacles on the tracks.
+
+![Overhead-view-car](img/car_overhead.jpg)
 ## Robot build
 _______________________________________
 ### parts
